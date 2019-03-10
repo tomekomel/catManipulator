@@ -1,16 +1,10 @@
 const axios = require('axios');
 
-const imagePromise = axios.get('https://api.thecatapi.com/v1/images/search');
+const p = new Promise((resolve, reject) => {
+  resolve(5);
+});
 
-function loadImageAsync(url) {
- return new Promise((resolve, reject) => {
-   const img = new Image();
-   img.addEventListener('load', event => resolve(img));
-   img.addEventListener('error', reason => reject(new Error('Loading faild')));
-   img.src = url;
- });
-}
-
-loadImageAsync('http://thecatapi.com/api/images/get?format=src&type=jpg&size=medium')
-  .then(img => document.querySelector('.image').appendChild(img))
+p.then(result => result * 2)
+  .then(result => Promise.reject(Error(`Ops!`)))
+  .then(result => console.log(result))
   .catch(reason => console.log(reason));
