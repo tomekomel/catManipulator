@@ -19,3 +19,13 @@ function logError(reason)
 {
   console.log('Error log: ' + reason);
 }
+
+const newPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error("itpracownia"));
+  }, 2000);
+});
+
+newPromise
+  .then(result => console.log(result))
+  .catch(reject => console.log(reject));
