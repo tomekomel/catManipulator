@@ -8,10 +8,14 @@ const res = arithmetic.add(37, 37);
 const imagePromise = axios.get('https://api.thecatapi.com/v1/images/search');
 imagePromise.then(
   setCatImage,
-  reason => console.log(reason)
+  logError
 );
 
 function setCatImage(response) {
   document.getElementById('cat_image').setAttribute('src', response.data[0].url);
 }
 
+function logError(reason)
+{
+  console.log('Error log: ' + reason);
+}
